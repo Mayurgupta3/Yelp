@@ -1,22 +1,23 @@
+var path = require('path');
+var webpackConfig = require('./webpack.config');
+
 module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['mocha', 'chai'],
+    files: [
+      'tests.webpack.js'
+    ],
+
+    preprocessors: {
+      'tests.webpack.js': ['webpack', 'sourcemap'],
+    },
+
     webpack: webpackConfig,
     webpackServer: {
       noInfo: true
     },
-    files: ['tests.webpack.js'],
-    exclude: [],
-    preprocessors: {'tests.webpack.js': ['webpack', 'sourcemap']},
-    reporters: ['spec'],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['PhantomJS'],
-    singleRun: false,
-    concurrency: Infinity,
+
     plugins: [
       'karma-mocha',
       'karma-chai',
@@ -25,5 +26,11 @@ module.exports = function(config) {
       'karma-spec-reporter',
       'karma-sourcemap-loader'
     ],
+
+    reporters: ['spec'],
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    browsers: ['PhantomJS']
   })
-}
+};
