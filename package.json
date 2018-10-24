@@ -1,10 +1,14 @@
 {
   "name": "yelp",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project involves using React and JavaScript to build a Application which help people to find hotels and restaurants near them using Google API.",
   "scripts": {
-    "start": "./node_modules/.bin/hjs-dev-server",
-    "test": "NODE_ENV=test ./node_modules/karma/bin/karma start karma.conf.js",
+    "start": "cross-env NODE_ENV=development hjs-dev-server",
+    "clean": "rimraf dist",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack",
+    "publish_pages": "gh-pages -d dist",
+    "ghpages": "npm run build && npm run publish_pages",
+    "test": "cross-env NODE_ENV=test karma start karma.conf.js",
     "test:watch": "npm run test -- --watch"
   },
   "author": "",
@@ -43,22 +47,35 @@
     "phantomjs-prebuilt": "^2.1.16",
     "postcss-loader": "^2.1.6",
     "precss": "^3.1.2",
-    "react": "^16.4.2",
+    "react": "^16.5.2",
     "react-addons-test-utils": "^15.6.2",
-    "react-dom": "^16.4.2",
+    "react-dom": "^15.6.2",
     "sinon": "^6.1.5",
     "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.16.5"
+    "url-loader": "^1.1.1",
+    "webpack": "^4.19.1"
   },
   "dependencies": {
     "ajv": "^6.5.2",
     "babel": "^6.23.0",
     "babel-install": "^2.1.0",
+    "babel-preset-env": "^1.7.0",
+    "classnames": "^2.2.6",
+    "cross-env": "^5.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "filter": "^0.1.1",
     "font-awesome": "^4.7.0",
+    "google-maps-react": "^2.0.2",
     "react-router": "^4.3.1",
     "webpack-dev-middleware": "^3.1.3"
-  }
+  },
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mayurgupta3/Yelp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mayurgupta3/Yelp/issues"
+  },
+  "homepage": "https://github.com/Mayurgupta3/Yelp#readme"
 }
